@@ -1,0 +1,17 @@
+<form action="/search" id="search-form">
+  <input type="text" name="searchTerm">
+  <button type="submit">search</button>
+</form>
+<script>
+$('.search-form').on('submit', function(event){
+  event.preventDefault();
+
+  varsearchTerm = $('.search-form input').val();
+  $.get('/search?searchTerm=' + searchTerm)
+    .then(function(data) {
+      console.log('got dat', data);
+      $('#search-results').html(data);
+
+    });
+});
+</script>

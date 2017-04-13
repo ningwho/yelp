@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link href="/style.css" rel="stylesheet">
+    <script src="/jquery.js"></script>
+  </head>
+  <body>
+    {{#if session.loggedInUser}}
+      <p>Welcome, {{session.loggedInUser}}!</p>
+    {{/if}}
+    {{{ body }}}
+  </body>
+  <script>
+  $('#search-form').submit(function(event) {
+    event.preventDefault();
+    let searchTerm = $('#search-form input').val();
+    $.get('/search?searchTerm=' + searchTerm)
+      .then(function(resultsHTML) {
+        $('#search-results').html(resultsHTML);
+      });
+  $('#weather').submit(function(event) {
+    event.preventDefault();
+    var APPID = '4e85f3701f082910f2d45a69cc4e91aa';
+    let cities = $('#search-cities input').val();
+
+    $.get('api.openweathermap.org/data/2.5/weather', {
+      q: 'Atlanta',
+      APPID: APPID
+    })
+    .then(function(data) {
+      console.log('data', data);
+    })
+    });
+
+  </script>
+</html>

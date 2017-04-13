@@ -1,0 +1,10 @@
+body {
+  text-align: center;
+}
+.search-form {
+  padding-top: 200px;
+}
+.search-form input,
+.search-form button {
+  font-size: 2em;
+}
